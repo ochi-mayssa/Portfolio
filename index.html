@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayssa Ochy Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #1c1c3c;
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #14142b;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #fecd57;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 400;
+        }
+
+        nav a:hover {
+            color: #fecd57;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: #fecd57;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+
+        .hero a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #fecd57;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .hero a:hover {
+            background-color: #e5b850;
+        }
+
+        section {
+            padding: 50px;
+        }
+
+        .skills, .projects, .about, .contact {
+            margin: 50px auto;
+            max-width: 1200px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            color: #fecd57;
+            margin-bottom: 20px;
+        }
+
+        .skills ul, .projects ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .skills li, .projects li {
+            margin: 10px;
+            padding: 20px;
+            background: #14142b;
+            border-radius: 5px;
+            flex: 1 1 calc(30% - 20px);
+            text-align: center;
+        }
+
+        .skills li:hover, .projects li:hover {
+            background: #1f1f4a;
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact input, .contact textarea {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #282846;
+            color: #fff;
+        }
+
+        .contact button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #fecd57;
+            color: #14142b;
+            font-weight: 600;
+        }
+
+        .contact button:hover {
+            background: #e5b850;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #14142b;
+            color: #fff;
+        }
+
+        footer a {
+            color: #fecd57;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Mayssa Ochy</div>
+        <nav>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#about">About Me</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Welcome to My Portfolio</h1>
+        <p>I'm Mayssa Ochy, a passionate web developer and designer based in Tunisia.</p>
+        <a href="#projects">View My Work</a>
+    </div>
+
+    <section id="skills" class="skills">
+        <h2 class="section-title">My Skills</h2>
+        <ul>
+            <li>HTML5 & CSS3</li>
+            <li>JavaScript</li>
+            <li>PHP & MySQL</li>
+            <li>Logo Design</li>
+            <li>Responsive Web Design</li>
+            <li>Database Management</li>
+        </ul>
+    </section>
+
+    <section id="projects" class="projects">
+    <h2 class="section-title">Projects</h2>
+    <ul>
+        <li>
+            <h3>E-commerce Website</h3>
+            <p>An online store featuring product categories, a shopping cart, and an auction system.</p>
+            <a href="http://example.com/ecommerce" target="_blank">Live Demo</a> |
+            <a href="http://github.com/username/ecommerce-project" target="_blank">GitHub Repository</a>
+            <div>
+                <img src="ecommerce-screenshot1.jpg" alt="E-commerce Screenshot 1" style="width: 100%; max-width: 300px;">
+                <img src="ecommerce-screenshot2.jpg" alt="E-commerce Screenshot 2" style="width: 100%; max-width: 300px;">
+            </div>
+        </li>
+        <li>
+            <h3>Portfolio Website</h3>
+            <p>A responsive portfolio showcasing my work and skills.</p>
+        </li>
+        <li>
+            <h3>Restaurant App</h3>
+            <p>A simple app for managing restaurant orders and menus.</p>
+        </li>
+    </ul>
+</section>
+
+
+    <section id="about" class="about">
+        <h2 class="section-title">About Me</h2>
+        <p>I'm a 22-year-old freelance web developer and programmer passionate about creating beautiful and functional websites. I'm currently pursuing a Bachelor's degree in Information Technology.</p>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="section-title">Contact Me</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Maisa Rashi. All Rights Reserved. | <a href="#">LinkedIn</a> | <a href="#">GitHub</a></p>
+    </footer>
+</body>
+
+</html>
