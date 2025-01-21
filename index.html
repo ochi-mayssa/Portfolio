@@ -53,7 +53,7 @@
     header {
       background: linear-gradient(135deg, #6a11cb, #2575fc);
       color: #fff;
-      padding: 20px 0;
+      padding: 15px 0; /* Reduced padding for mobile */
       text-align: center;
       position: sticky;
       top: 0;
@@ -64,16 +64,16 @@
     }
 
     header h1 {
-      font-size: 2.8rem;
+      font-size: 2rem; /* Smaller font size for mobile */
       font-weight: 700;
-      letter-spacing: 2px;
+      letter-spacing: 1px; /* Reduced letter spacing */
       margin-bottom: 10px;
       animation: fadeInDown 1s ease-in-out;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
 
     header p {
-      font-size: 1.2rem;
+      font-size: 1rem; /* Smaller font size for mobile */
       opacity: 0.9;
       animation: fadeInUp 1s ease-in-out;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -82,10 +82,10 @@
     nav ul {
       list-style: none;
       padding: 0;
-      margin: 15px 0 0;
+      margin: 10px 0 0; /* Reduced margin for mobile */
       display: flex;
       justify-content: center;
-      gap: 15px;
+      gap: 10px; /* Reduced gap for mobile */
       flex-wrap: wrap; /* Allow wrapping on small screens */
     }
 
@@ -97,11 +97,12 @@
       color: #fff;
       font-weight: 600;
       transition: color 0.3s ease, transform 0.3s ease;
-      padding: 8px 15px;
+      padding: 6px 12px; /* Reduced padding for mobile */
       border-radius: 25px;
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(5px);
       border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 0.9rem; /* Smaller font size for mobile */
     }
 
     nav ul li a:hover {
@@ -385,17 +386,25 @@
 
     /* Responsive Design */
     @media (max-width: 768px) {
+      header {
+        padding: 10px 0; /* Even smaller padding for mobile */
+      }
+
       header h1 {
-        font-size: 2rem;
+        font-size: 1.8rem; /* Smaller font size for mobile */
       }
 
       header p {
-        font-size: 1rem;
+        font-size: 0.9rem; /* Smaller font size for mobile */
       }
 
       nav ul {
-        flex-direction: column;
-        gap: 10px;
+        gap: 8px; /* Smaller gap for mobile */
+      }
+
+      nav ul li a {
+        padding: 5px 10px; /* Smaller padding for mobile */
+        font-size: 0.8rem; /* Smaller font size for mobile */
       }
 
       #hero {
@@ -531,7 +540,7 @@
           <a href="#" class="btn">GitHub</a>
         </div>
         <div class="project">
-          <img src="https://ochi-mayssa.github.io/Portfolio/" alt="Projet 2">
+          <img src="https://ochi-mayssa.github.io/Portfolio" alt="Projet 2">
           <h3>Portfolio</h3>
           <p>Un portfolio personnel mettant en avant mes compétences et projets.</p>
           <a href="#" class="btn">Démo</a>
