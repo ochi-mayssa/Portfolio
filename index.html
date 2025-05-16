@@ -20,6 +20,7 @@
       font-family: 'Quicksand', sans-serif;
       background: linear-gradient(to bottom right, #fff0f5, #ffe4e1);
       color: var(--text);
+      overflow-x: hidden;
     }
 
     header {
@@ -67,6 +68,8 @@
       max-width: 900px;
       margin: 0 auto;
       padding: 2rem;
+      position: relative;
+      z-index: 1;
     }
 
     section {
@@ -116,10 +119,37 @@
       font-size: 0.9rem;
       color: #888;
       background-color: var(--primary);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Sakura Petals Animation */
+    .sakura {
+      position: fixed;
+      top: -10px;
+      background-image: url('https://cdn.jsdelivr.net/gh/jaysalvat/sakura.js/sakura.png');
+      background-size: contain;
+      width: 25px;
+      height: 25px;
+      z-index: 0;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
+
+  <div id="sakura-container"></div>
 
   <header>
     <h1>Mayssa Ochy</h1>
@@ -174,6 +204,25 @@
   <footer>
     &copy; 2025 Mayssa Ochy 🌸 Tous droits réservés.
   </footer>
+
+  <script>
+    const container = document.getElementById('sakura-container');
+
+    for (let i = 0; i < 20; i++) {
+      const petal = document.createElement('div');
+      petal.classList.add('sakura');
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDuration = 5 + Math.random() * 5 + 's';
+      petal.style.opacity = Math.random();
+      container.appendChild(petal);
+
+      // Reset animation
+      petal.addEventListener('animationiteration', () => {
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.animationDuration = 5 + Math.random() * 5 + 's';
+      });
+    }
+  </script>
 
 </body>
 </html>
