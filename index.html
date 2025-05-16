@@ -1,228 +1,262 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mayssa Ochy - Développeuse Web</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio de Mayssa Ochy - Développeuse Web Full Stack spécialisée en React et Node.js">
+  <title>Mayssa Ochy - Développeuse Web Full Stack</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root {
-      --primary: #fce4ec;
-      --accent: #f48fb1;
-      --text: #5e4b56;
-      --white: #fff;
-      --soft-shadow: rgba(244, 143, 177, 0.3);
+      --primary-color: #f6c1d9;
+      --secondary-color: #f9e5ec;
+      --accent-color: #ff6f91;
+      --text-color: #333;
+      --bg-light: #fff6fa;
     }
 
     body {
+      font-family: 'Poppins', sans-serif;
       margin: 0;
-      font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(to bottom right, #fff0f5, #ffe4e1);
-      color: var(--text);
-      overflow-x: hidden;
-    }
-
-    header {
-      text-align: center;
-      padding: 2rem;
-      background-color: var(--primary);
-      box-shadow: 0 2px 8px var(--soft-shadow);
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      color: var(--accent);
-    }
-
-    header p {
-      font-size: 1.2rem;
-      margin-top: 0.5rem;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 1rem 0;
-      margin: 0;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 600;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      background-color: var(--accent);
-      color: white;
+      color: var(--text-color);
+      line-height: 1.6;
+      background: var(--bg-light);
     }
 
     .container {
-      max-width: 900px;
+      width: 90%;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 2rem;
+    }
+
+    .section {
+      padding: 5rem 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav__list {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav__link {
+      color: #fff;
+      padding: 0.5rem 1.5rem;
+      border-radius: 2rem;
+      transition: all 0.3s ease;
       position: relative;
-      z-index: 1;
+      background: var(--accent-color);
     }
 
-    section {
-      margin-bottom: 3rem;
-      background-color: var(--white);
-      padding: 2rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px var(--soft-shadow);
+    .nav__link:hover {
+      background: #f48ca1;
     }
 
-    section h2 {
-      font-size: 1.8rem;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      position: relative;
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 6rem 0;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: #fff;
     }
 
-    section h2::after {
-      content: "🌸";
-      position: absolute;
-      right: -1.5rem;
-    }
-
-    ul {
-      padding-left: 1.2rem;
-    }
-
-    li {
-      margin-bottom: 0.5rem;
-    }
-
-    .social-links a {
-      text-decoration: none;
-      color: var(--accent);
-      font-size: 1.5rem;
-      margin-right: 1rem;
-      transition: 0.3s ease;
-    }
-
-    .social-links a:hover {
-      color: #d81b60;
-    }
-
-    footer {
+    .hero__content {
+      max-width: 600px;
       text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #888;
-      background-color: var(--primary);
+    }
+
+    .hero__image {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+
+    .timeline {
       position: relative;
-      z-index: 1;
+      max-width: 800px;
+      margin: 2rem auto;
     }
 
-    /* Sakura Petals Animation */
-    .sakura {
-      position: fixed;
-      top: -10px;
-      background-image: url('https://cdn.jsdelivr.net/gh/jaysalvat/sakura.js/sakura.png');
-      background-size: contain;
-      width: 25px;
-      height: 25px;
-      z-index: 0;
-      animation: fall linear infinite;
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+      background: var(--primary-color);
     }
 
-    @keyframes fall {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
+    .timeline__item {
+      position: relative;
+      width: 50%;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin: 2rem 0;
+    }
+
+    .timeline__item:nth-child(odd) {
+      left: 0;
+      transform: translateX(calc(50% - 1px));
+    }
+
+    .timeline__item:nth-child(even) {
+      left: 50%;
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 2px solid #ddd;
+      border-radius: 0.5rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-input:focus {
+      border-color: var(--accent-color);
+      outline: none;
+    }
+
+    @media (max-width: 768px) {
+      .timeline::before {
+        left: 20px;
       }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
+
+      .timeline__item {
+        width: 100%;
+        left: 0 !important;
+        transform: none !important;
+        margin-left: 40px;
+      }
+
+      .hero {
+        padding: 4rem 0;
       }
     }
   </style>
 </head>
 <body>
-
-  <div id="sakura-container"></div>
-
   <header>
-    <h1>Mayssa Ochy</h1>
-    <p>Développeuse Web Passionnée & Créative</p>
-    <nav>
-      <ul>
-        <li><a href="#about">À propos</a></li>
-        <li><a href="#skills">Compétences</a></li>
-        <li><a href="#projects">Projets</a></li>
-        <li><a href="#contact">Contact</a></li>
+    <nav class="container">
+      <ul class="nav__list">
+        <li><a href="#about" class="nav__link">À propos</a></li>
+        <li><a href="#skills" class="nav__link">Compétences</a></li>
+        <li><a href="#projects" class="nav__link">Projets</a></li>
+        <li><a href="#contact" class="nav__link">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <main class="container">
-    <section id="about">
-      <h2>À propos</h2>
-      <p>Bienvenue dans mon univers doux et digital 🌸 Je m'appelle Mayssa, développeuse web passionnée par le design élégant, les interfaces intuitives, et le code propre. J’aime créer des expériences web inspirées par la beauté et la douceur — un peu comme les cerisiers en fleurs.</p>
+  <main>
+    <section class="hero container">
+      <div class="hero__content">
+        <h1 class="hero__title">Mayssa Ochy</h1>
+        <p class="hero__subtitle">Développeuse Web Full Stack</p>
+        <p>Je crée des expériences web uniques avec une touche de douceur et de modernité.</p>
+        <a href="#contact" class="btn">Me contacter</a>
+      </div>
+      <div class="hero__image">
+        <img src="assets/hero-image.jpg" alt="Mayssa Ochy" loading="lazy">
+      </div>
     </section>
 
-    <section id="skills">
+    <section id="skills" class="section container">
       <h2>Compétences</h2>
       <ul>
-        <li>🌸 HTML5 / CSS3 / SASS</li>
-        <li>🌸 JavaScript / React / Vue.js</li>
-        <li>🌸 Node.js / PHP / MySQL</li>
-        <li>🌸 Responsive Design & UI/UX</li>
-        <li>🌸 Git & GitHub</li>
+        <li>HTML / CSS / JavaScript</li>
+        <li>React / Node.js / Express</li>
+        <li>Django / Flutter / Dart / Spring Boot</li>
+        <li>MySQL / MongoDB</li>
+        <li>Git / GitHub</li>
+        <li>Langues : Français, Anglais, Arabe</li>
       </ul>
     </section>
 
-    <section id="projects">
+    <section id="projects" class="section container">
       <h2>Projets</h2>
       <ul>
-        <li><strong>Portfolio Sakura</strong> — Un site web personnel au thème floral et apaisant.</li>
-        <li><strong>Shop Haneul</strong> — Une boutique en ligne girly avec des animations douces et design responsive.</li>
-        <li><strong>To-do List Magique</strong> — Une application de gestion de tâches aux couleurs pastel et transitions smooth.</li>
+        <li><strong>Portfolio Sakura</strong> — Un site personnel inspiré de l’univers floral et doux japonais.</li>
+        <li><strong>Shop Haneul</strong> — Une boutique en ligne pour les filles avec un design coréen tendance.</li>
+        <li><strong>To-do List Magique</strong> — Une application de gestion de tâches au style kawaii et intuitif.</li>
+        <li><strong>AnimeHub</strong> — Une plateforme immersive dédiée aux animes et mangas, avec fiches, news et univers otaku.</li>
+        <li><strong>TokyoBites</strong> — Une app de recettes japonaises halal, combinant tradition nippone et accessibilité halal.</li>
       </ul>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="section container">
       <h2>Contact</h2>
-      <p>Tu veux collaborer, discuter ou juste dire bonjour ? 🌷 Tu peux me retrouver ici :</p>
-      <div class="social-links">
-        <a href="https://github.com/mayssaochy" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com/in/mayssaochy" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="mailto:ochimayssa@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-      </div>
+      <p>Email : <a href="mailto:ochimayssa@gmail.com">ochimayssa@gmail.com</a></p>
     </section>
   </main>
 
   <footer>
-    &copy; 2025 Mayssa Ochy 🌸 Tous droits réservés.
+    <div class="container">
+      <div class="social-links">
+        <a href="https://github.com/mayssaochy" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://linkedin.com/in/mayssaochy" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </div>
   </footer>
 
   <script>
-    const container = document.getElementById('sakura-container');
-
-    for (let i = 0; i < 20; i++) {
-      const petal = document.createElement('div');
-      petal.classList.add('sakura');
-      petal.style.left = Math.random() * 100 + 'vw';
-      petal.style.animationDuration = 5 + Math.random() * 5 + 's';
-      petal.style.opacity = Math.random();
-      container.appendChild(petal);
-
-      // Reset animation
-      petal.addEventListener('animationiteration', () => {
-        petal.style.left = Math.random() * 100 + 'vw';
-        petal.style.animationDuration = 5 + Math.random() * 5 + 's';
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
       });
-    }
-  </script>
+    }, { threshold: 0.1 });
 
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 </body>
 </html>
