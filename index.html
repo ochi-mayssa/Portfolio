@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Étudiante en Informatique</title>
+    <title>Portfolio - Gestion des Messages</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -13,6 +13,7 @@
             --dark: #212529;
             --light: #f8f9fa;
             --gray: #6c757d;
+            --success: #06d6a0;
             --transition: all 0.3s ease;
         }
 
@@ -63,6 +64,9 @@
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .nav-links {
@@ -105,6 +109,150 @@
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 999;
+        }
+
+        .admin-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+
+        .admin-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .messages-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            width: 350px;
+            max-height: 500px;
+            overflow-y: auto;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            display: none;
+        }
+
+        .messages-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .messages-list {
+            list-style: none;
+        }
+
+        .message-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .message-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .message-sender {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .message-date {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .message-subject {
+            font-size: 0.9rem;
+            color: var(--dark);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 5px;
+        }
+
+        .message-preview {
+            font-size: 0.85rem;
+            color: var(--gray);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .no-messages {
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--gray);
+        }
+
+        .message-detail {
+            display: none;
+            padding: 20px;
+        }
+
+        .message-detail-content {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .message-detail-header {
+            margin-bottom: 15px;
+        }
+
+        .back-to-list {
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .message-detail-subject {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .message-detail-info {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .message-detail-body {
+            line-height: 1.7;
         }
 
         /* Hero Section */
@@ -171,6 +319,7 @@
             font-weight: 600;
             transition: var(--transition);
             border: 2px solid var(--primary);
+            cursor: pointer;
         }
 
         .btn:hover {
@@ -189,6 +338,16 @@
         .btn-outline:hover {
             background-color: var(--primary);
             color: white;
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            border-color: var(--success);
+        }
+
+        .btn-success:hover {
+            background-color: transparent;
+            color: var(--success);
         }
 
         /* Sections */
@@ -218,167 +377,6 @@
             height: 4px;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             border-radius: 2px;
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: var(--transition);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-
-        .project-image {
-            height: 200px;
-            background-color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-        }
-
-        .project-content {
-            padding: 25px;
-        }
-
-        .project-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .tech-tag {
-            background-color: rgba(58,134,255,0.1);
-            color: var(--primary);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .project-links a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: var(--transition);
-        }
-
-        .project-links a:hover {
-            color: var(--secondary);
-        }
-
-        /* Skills Section */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .skills-category {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .skills-category h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .skills-list {
-            list-style: none;
-        }
-
-        .skills-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .skills-list li:last-child {
-            border-bottom: none;
-        }
-
-        .skills-list i {
-            color: var(--primary);
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-text {
-            padding-right: 30px;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-        }
-
-        .about-info {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .info-item {
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .info-item:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-
-        .info-item h4 {
-            color: var(--primary);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         /* Contact Section */
@@ -506,6 +504,7 @@
             margin-top: -65px;
             margin-bottom: 30px;
             transition: var(--transition);
+            text-decoration: none;
         }
 
         .back-to-top:hover {
@@ -529,13 +528,8 @@
                 margin: 0 auto 30px;
             }
             
-            .about-content,
             .contact-container {
                 grid-template-columns: 1fr;
-            }
-            
-            .about-text {
-                padding-right: 0;
             }
         }
 
@@ -573,6 +567,16 @@
             .section-title h2 {
                 font-size: 2rem;
             }
+
+            .admin-panel {
+                top: 70px;
+                right: 10px;
+            }
+
+            .messages-container {
+                width: 300px;
+                right: -50px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -586,8 +590,9 @@
                 margin-left: 0;
             }
             
-            .projects-grid {
-                grid-template-columns: 1fr;
+            .messages-container {
+                width: 280px;
+                right: -80px;
             }
         }
     </style>
@@ -597,7 +602,10 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="#" class="logo">Portfolio</a>
+                <a href="#" class="logo">
+                    <i class="fas fa-code"></i>
+                    Portfolio
+                </a>
                 <ul class="nav-links">
                     <li><a href="#home">Accueil</a></li>
                     <li><a href="#projects">Projets</a></li>
@@ -611,6 +619,36 @@
             </nav>
         </div>
     </header>
+
+    <!-- Admin Panel for Messages -->
+    <div class="admin-panel">
+        <div class="admin-btn" id="messagesBtn">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <div class="messages-container" id="messagesContainer">
+            <div class="messages-header">
+                <h3>Messages Reçus</h3>
+                <span id="messageCount">0</span>
+            </div>
+            <ul class="messages-list" id="messagesList">
+                <li class="no-messages">Aucun message pour le moment</li>
+            </ul>
+            <div class="message-detail" id="messageDetail">
+                <a href="#" class="back-to-list" id="backToList">
+                    <i class="fas fa-arrow-left"></i> Retour à la liste
+                </a>
+                <div class="message-detail-content">
+                    <h3 class="message-detail-subject" id="detailSubject"></h3>
+                    <div class="message-detail-info">
+                        <div><strong>De:</strong> <span id="detailSender"></span></div>
+                        <div><strong>Email:</strong> <span id="detailEmail"></span></div>
+                        <div><strong>Date:</strong> <span id="detailDate"></span></div>
+                    </div>
+                    <div class="message-detail-body" id="detailBody"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -626,188 +664,7 @@
                 </div>
                 <div class="hero-image">
                     <div class="hero-image-placeholder">
-                        <i class="fas fa-code"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <div class="section-title">
-                <h2>Mes Projets</h2>
-            </div>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #8338ec, #3a86ff);">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>TokyoBites - Plateforme Culinaire</h3>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Flutter</span>
-                            <span class="tech-tag">SqFlite</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                        <p>Application web de recettes japonaises halal avec système d'authentification sécurisé, favoris, commentaires et vidéos tutoriels.</p>
-                        <div class="project-links">
-                            <a href="#"><i class="fab fa-github"></i> Code Source</a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Voir le projet</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #ff006e, #fb5607);">
-                        <i class="fas fa-tv"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>AnimeHub - Gestion de Contenu</h3>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Django</span>
-                            <span class="tech-tag">PostgreSQL</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                        <p>Plateforme de gestion d'anime et manga avec architecture MVC, système de favoris et recherche avancée.</p>
-                        <div class="project-links">
-                            <a href="#"><i class="fab fa-github"></i> Code Source</a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Voir le projet</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #06d6a0, #118ab2);">
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Hannuel - Site e-commerce</h3>
-                        <div class="tech-tags">
-                            <span class="tech-tag">HTML/CSS/JS</span>
-                            <span class="tech-tag">PHP</span>
-                            <span class="tech-tag">MySQL</span>
-                        </div>
-                        <p>Boutique en ligne avec design élégant et ergonomique, panier d'achat dynamique et module de paiement sécurisé.</p>
-                        <div class="project-links">
-                            <a href="#"><i class="fab fa-github"></i> Code Source</a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Voir le projet</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #ffd166, #ef476f);">
                         <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Portfolio Personnel</h3>
-                        <div class="tech-tags">
-                            <span class="tech-tag">HTML5</span>
-                            <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                        <p>Site vitrine responsive présentant mes projets et compétences avec section projets, compétences et formulaire de contact.</p>
-                        <div class="project-links">
-                            <a href="#"><i class="fab fa-github"></i> Code Source</a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Voir le projet</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" style="background-color: #f0f8ff;">
-        <div class="container">
-            <div class="section-title">
-                <h2>Mes Compétences</h2>
-            </div>
-            <div class="skills-container">
-                <!-- Technical Skills -->
-                <div class="skills-category">
-                    <h3><i class="fas fa-laptop-code"></i> Compétences Techniques</h3>
-                    <ul class="skills-list">
-                        <li><i class="fas fa-check"></i> Langages: Java, JavaScript, PHP, C++, Dart, Python</li>
-                        <li><i class="fas fa-check"></i> Développement Web: HTML5, CSS3, JavaScript, Angular, PHP, Django, SpringBoot</li>
-                        <li><i class="fas fa-check"></i> Bases de Données: MySQL, PostgreSQL, Oracle</li>
-                        <li><i class="fas fa-check"></i> Outils: Visual Studio Code, Android Studio, GitHub</li>
-                        <li><i class="fas fa-check"></i> Méthodologies: Agile, SCRUM</li>
-                    </ul>
-                </div>
-
-                <!-- Soft Skills -->
-                <div class="skills-category">
-                    <h3><i class="fas fa-users"></i> Compétences Transversales</h3>
-                    <ul class="skills-list">
-                        <li><i class="fas fa-check"></i> Résolution de problèmes</li>
-                        <li><i class="fas fa-check"></i> Rédaction technique</li>
-                        <li><i class="fas fa-check"></i> Travail d'équipe</li>
-                        <li><i class="fas fa-check"></i> Communication efficace</li>
-                        <li><i class="fas fa-check"></i> Sens de l'organisation</li>
-                    </ul>
-                </div>
-
-                <!-- Languages -->
-                <div class="skills-category">
-                    <h3><i class="fas fa-language"></i> Langues</h3>
-                    <ul class="skills-list">
-                        <li><i class="fas fa-check"></i> Arabe: Langue maternelle</li>
-                        <li><i class="fas fa-check"></i> Français: Intermédiaire (B1)</li>
-                        <li><i class="fas fa-check"></i> Anglais: Intermédiaire (B1)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>À Propos de Moi</h2>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Étudiante en dernière année de Licence en Technologie de l'Informatique à l'ISET Jendouba, spécialisée en développement logiciel et systèmes d'information. Dotée d'une solide expérience pratique acquise à travers divers stages et projets personnels.</p>
-                    <p>Passionnée par l'innovation technologique et reconnue pour mes capacités d'analyse, ma rigueur technique et mon aptitude à travailler en équipe. À la recherche d'une opportunité pour appliquer mes compétences techniques et contribuer à des projets ambitieux.</p>
-                    <p>En dehors du développement, je suis passionnée par la culture japonaise et les nouvelles technologies. Je suis également membre active du Club Informatique de l'ISET Jendouba.</p>
-                </div>
-                <div class="about-info">
-                    <!-- Education -->
-                    <div class="info-item">
-                        <h4><i class="fas fa-graduation-cap"></i> Formation Académique</h4>
-                        <p><strong>Licence en Technologie de l'Informatique</strong> (2022–2026)<br>
-                        Institut Supérieur des Études Technologies de Jendouba (ISET)<br>
-                        Spécialisation: Développement Logiciel et Systèmes d'Information</p>
-                        <p><strong>Baccalauréat en Sciences Expérimentales</strong> (2022)<br>
-                        Lycée 9 Avril de Jendouba</p>
-                    </div>
-                    
-                    <!-- Experience -->
-                    <div class="info-item">
-                        <h4><i class="fas fa-briefcase"></i> Expérience Professionnelle</h4>
-                        <p><strong>Employee Saisonnière - Service Technique</strong> (Juillet–Août 2024)<br>
-                        Tunisie Telecom, Jendouba</p>
-                        <p><strong>Stagiaire en Développement Web</strong> (Janvier 2025)<br>
-                        MahdiSkills, Tunis</p>
-                        <p><strong>Stage d'Initiation Technique</strong> (Janvier 2022)<br>
-                        Tunisie Telecom, Jendouba</p>
-                    </div>
-                    
-                    <!-- Certifications -->
-                    <div class="info-item">
-                        <h4><i class="fas fa-certificate"></i> Certifications</h4>
-                        <p><strong>Certificat en Prise de Parole en Public</strong><br>
-                        Centre de Formation Professionnelle, Tunis (2023)</p>
-                        <p><strong>Formation en Web Design Avancé</strong><br>
-                        FreeCodeCamp Certification (Juillet 2024)</p>
                     </div>
                 </div>
             </div>
@@ -854,7 +711,7 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Nom Complet</label>
                             <input type="text" id="name" class="form-control" required>
@@ -917,15 +774,122 @@
             });
         });
         
-        // Form Submission
-        const contactForm = document.querySelector('form');
+        // Message Storage
+        let messages = JSON.parse(localStorage.getItem('portfolioMessages')) || [];
+        
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                alert('Merci pour votre message! Je vous répondrai dès que possible.');
+                
+                // Create message object
+                const newMessage = {
+                    id: Date.now(),
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    subject: document.getElementById('subject').value,
+                    message: document.getElementById('message').value,
+                    date: new Date().toLocaleString('fr-FR'),
+                    read: false
+                };
+                
+                
+                messages.unshift(newMessage);
+     
+                localStorage.setItem('portfolioMessages', JSON.stringify(messages));
+                
+                
+                updateMessagesUI();
+                alert('Message envoyé avec succès!');
                 this.reset();
             });
         }
+        
+ 
+        const messagesBtn = document.getElementById('messagesBtn');
+        const messagesContainer = document.getElementById('messagesContainer');
+        
+        messagesBtn.addEventListener('click', function() {
+            updateMessagesUI();
+            messagesContainer.style.display = messagesContainer.style.display === 'block' ? 'none' : 'block';
+        });
+        
+      
+        document.addEventListener('click', function(e) {
+            if (!messagesContainer.contains(e.target) && e.target !== messagesBtn) {
+                messagesContainer.style.display = 'none';
+            }
+        });
+       
+        function updateMessagesUI() {
+            const messagesList = document.getElementById('messagesList');
+            const messageCount = document.getElementById('messageCount');
+            const noMessages = document.querySelector('.no-messages');
+            
+            
+            messageCount.textContent = messages.length;
+            
+           
+            messagesList.innerHTML = '';
+            
+            
+            if (messages.length === 0) {
+                messagesList.innerHTML = '<li class="no-messages">Aucun message pour le moment</li>';
+                return;
+            }
+            
+          
+            messages.forEach(msg => {
+                const messageItem = document.createElement('li');
+                messageItem.className = 'message-item';
+                messageItem.dataset.id = msg.id;
+                messageItem.innerHTML = `
+                    <div class="message-header">
+                        <div class="message-sender">${msg.name}</div>
+                        <div class="message-date">${msg.date}</div>
+                    </div>
+                    <div class="message-subject">${msg.subject}</div>
+                    <div class="message-preview">${msg.message}</div>
+                `;
+                messagesList.appendChild(messageItem);
+                
+            
+                messageItem.addEventListener('click', function() {
+                    showMessageDetails(msg.id);
+                });
+            });
+        }
+        
+       
+        function showMessageDetails(id) {
+            const message = messages.find(msg => msg.id == id);
+            if (!message) return;
+            
+       
+            document.getElementById('detailSubject').textContent = message.subject;
+            document.getElementById('detailSender').textContent = message.name;
+            document.getElementById('detailEmail').textContent = message.email;
+            document.getElementById('detailDate').textContent = message.date;
+            document.getElementById('detailBody').textContent = message.message;
+            
+            document.getElementById('messagesList').style.display = 'none';
+            document.getElementById('messageDetail').style.display = 'block';
+            
+         
+            message.read = true;
+            localStorage.setItem('portfolioMessages', JSON.stringify(messages));
+        }
+        
+     
+        document.getElementById('backToList').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('messagesList').style.display = 'block';
+            document.getElementById('messageDetail').style.display = 'none';
+        });
+        
+       
+        updateMessagesUI();
     </script>
 </body>
 </html>
